@@ -1,9 +1,10 @@
+var require = require || function(){};
+
 (function ($, moment)
 {
+   moment = moment || require('moment');
    var pluginName = "bootstrapMaterialDatePicker";
    var pluginDataName = "plugin_" + pluginName;
-
-   moment.locale('en');
 
    function Plugin(element, options)
    {
@@ -199,16 +200,16 @@
               },
               initTemplate: function ()
               {
-				var d = new Date();
-				var n = d.getFullYear();
-				
-				var yearPicker ="";
-				for (i = 1900; i < n+5; i++) { 
-					yearDiv = '<div class="year-picker-item" data-year="' + i + '">' + i + '</div>'
-					yearPicker = yearPicker + yearDiv;
-				}
-				
-				this.template = '<div class="dtp hidden" id="' + this.name + '">' +
+        var d = new Date();
+        var n = d.getFullYear();
+
+        var yearPicker ="";
+        for (i = 1900; i < n+5; i++) {
+          yearDiv = '<div class="year-picker-item" data-year="' + i + '">' + i + '</div>'
+          yearPicker = yearPicker + yearDiv;
+        }
+
+        this.template = '<div class="dtp hidden" id="' + this.name + '">' +
                          '<div class="dtp-content">' +
                          '<div class="dtp-date-view">' +
                          '<header class="dtp-header">' +
@@ -1011,22 +1012,22 @@
                  this.currentDate.add(1, 'years');
                  this.initDate(this.currentDate);
               },
-			  _onYearClick: function (){
-					$('.dtp-date-view').hide();
-					$('.dtp-year-picker').show();
-					var year = this.currentDate.format("YYYY");
-					var h = (year - 1900) * 39 - 200;
-					$('.dtp-year-picker').animate({scrollTop: h});
-			  },
-			  _onNewYearClick: function (e){
+        _onYearClick: function (){
+          $('.dtp-date-view').hide();
+          $('.dtp-year-picker').show();
+          var year = this.currentDate.format("YYYY");
+          var h = (year - 1900) * 39 - 200;
+          $('.dtp-year-picker').animate({scrollTop: h});
+        },
+        _onNewYearClick: function (e){
                     var newYear = $(e.target).data('year');
-					var oldYear = this.currentDate.format("YYYY");
-					var diff = newYear - oldYear;
-					this.currentDate.add(diff, 'years');
-					this.initDate(this.currentDate);
-					$('.dtp-year-picker').hide();
-					$('.dtp-date-view').show();
-			  },
+          var oldYear = this.currentDate.format("YYYY");
+          var diff = newYear - oldYear;
+          this.currentDate.add(diff, 'years');
+          this.initDate(this.currentDate);
+          $('.dtp-year-picker').hide();
+          $('.dtp-date-view').show();
+        },
               _onSelectDate: function (e)
               {
                  this.$dtpElement.find('a.dtp-select-day').removeClass('selected');
@@ -1168,9 +1169,9 @@
               setLang: function (l)
               {
                  this.params.lang = l;
- 		 moment.locale(this.params.lang);
+     moment.locale(this.params.lang);
                  this.initDates();
-		},
+    },
               destroy: function ()
               {
                  this._detachEvents();
