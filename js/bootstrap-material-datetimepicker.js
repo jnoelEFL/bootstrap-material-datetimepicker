@@ -210,7 +210,7 @@
         var n = d.getFullYear();
 
         var yearPicker ="";
-        for (i = 1900; i < n+5; i++) {
+        for (var i = 1900; i < n+5; i++) {
           yearDiv = '<div class="year-picker-item" data-year="' + i + '">' + i + '</div>'
           yearPicker = yearPicker + yearDiv;
         }
