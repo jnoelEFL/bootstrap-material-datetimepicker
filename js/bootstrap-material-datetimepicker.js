@@ -1,14 +1,16 @@
-(function(factory) {
+(function(global, factory) {
+  'use strict';
   if (typeof define === 'function' && define.amd) {
-    define([ 'jquery', 'moment' ], factory);
-  }
-  else if (typeof exports === 'object') { // Node/CommonJS
-    module.exports = factory(require('jquery'), require('moment'));
+    define([ 'jquery', 'moment' ], function($, moment) {
+      return factory($, moment, global, global.document);
+    });
+  } else if (typeof exports === 'object' && exports) { // Node/CommonJS
+    module.exports = factory(require('jquery'), require('moment'), global, global.document);
   }
   else {
-    factory(jQuery, moment);
+    factory(jQuery, moment, global, global.document);
   }
-})(function($, moment) {
+})(typeof window !== 'undefined' ? window : this, function($, moment, window, document, undefined) {
    var pluginName = "bootstrapMaterialDatePicker";
    var pluginDataName = "plugin_" + pluginName;
 
@@ -24,7 +26,26 @@
       this.element = element;
       this.$element = $(element);
 
-       this.params = {date: true, time: true, format: 'YYYY-MM-DD', minDate: null, maxDate: null, currentDate: null, lang: 'en', weekStart: 0, shortTime: false, clearButton: false, nowButton: false, cancelText: 'Cancel', okText: 'OK', clearText: 'Clear', nowText: 'Now', switchOnClick: false, triggerEvent: 'focus'};
+      this.params = {
+        date: true,
+        time: true,
+        format: 'YYYY-MM-DD',
+        minDate: null,
+        maxDate: null,
+        currentDate: null,
+        lang: 'en',
+        weekStart: 0,
+        shortTime: false,
+        clearButton: false,
+        nowButton: false,
+        cancelText: 'Cancel',
+        okText: 'OK',
+        clearText: 'Clear',
+        nowText: 'Now',
+        switchOnClick: false,
+        triggerEvent: 'focus',
+        position: 'middle'
+      };
       this.params = $.fn.extend(this.params, options);
 
       this.name = "dtp_" + this.setName();
@@ -1196,9 +1217,19 @@
               },
               _centerBox: function ()
               {
-                 var h = (this.$dtpElement.height() - this.$dtpElement.find('.dtp-content').height()) / 2;
+                var position = this.$dtpElement.position();
+                var offset = this.$dtpElement.offset();
+
+                var h = (this.$dtpElement.height() - this.$dtpElement.find('.dtp-content').height()) / 2;
+                if (this.params.position === 'bottom') {
+                  h = this.$dtpElement.find('.dtp-content').height() - this.$dtpElement.outerHeight() / 2
+                }
+                if (this.params.position === 'top') {
+                  h = 'auto'
+                }
+
                  this.$dtpElement.find('.dtp-content').css('marginLeft', -(this.$dtpElement.find('.dtp-content').width() / 2) + 'px');
-                 this.$dtpElement.find('.dtp-content').css('top', h + 'px');
+                 this.$dtpElement.find('.dtp-content').css('top', h);
               },
               enableDays: function ()
               {

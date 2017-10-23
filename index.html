@@ -4,17 +4,24 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="http://fezvrasta.github.io/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" />
-		<link rel="stylesheet" href="./css/bootstrap-material-datetimepicker.css" />
-		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-		<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="http://fezvrasta.github.io/bootstrap-material-design/dist/js/material.min.js"></script>
-		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-		<script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
-
+		
+			<link rel="stylesheet"
+					href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css"/>
+			<link rel="stylesheet"
+					href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>
+	
+			<link rel="stylesheet" href="./css/bootstrap-material-datetimepicker.css" />
+			<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+			<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+			<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+			<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+			<script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
+			
 		<style>
 			body
 			{
@@ -213,6 +220,39 @@
 				</div>
 			</div>
 		</div>
+		<div class="container well">
+			<div class="row">
+				<div class="col-md-6">
+					<h2>Position (Middle by default)</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-control-wrapper">
+						<input type="text" id="pos-middle" class="form-control floating-label" placeholder="Start Date">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<code>
+						<p>Code</p>
+						$('#pos-middle').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', position : 'middle' });
+					</code>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-control-wrapper">
+						<input type="text" id="pos-top" class="form-control floating-label" placeholder="Start Date">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<code>
+						<p>Code</p>
+						$('#pos-top').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', position : 'top' });
+					</code>
+				</div>
+			</div>
+		</div>
 		<script type="text/javascript">
 		$(document).ready(function()
 		{
@@ -256,6 +296,9 @@
 			});
 
 			$('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+			$('#pos-middle').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', position : 'middle' });
+			$('#pos-top').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', position : 'top' });
 
 			$.material.init()
 		});
